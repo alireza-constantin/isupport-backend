@@ -1,5 +1,4 @@
 const asyncHandler = require('express-async-handler');
-const { sendMail } = require('../utils/sendEmail');
 const User = require('../models/User');
 const { compare } = require('bcryptjs');
 const crypto = require('crypto');
@@ -12,32 +11,12 @@ const createUser = asyncHandler(async (req, res) => {
 	const { name, email, password } = req.body;
 
 	const user = await User.create({ name, email, password });
-
-	// confirmation email url
-	const url = `${req.protocol}://localhost:3000/register/confirm-email/${user._id}`;
-	sendMail(email, 'please confirm your email', 'Please click on link below to confirm your email', url);
-
+	res.cookie('jid', createRefreshToken(user._id), {
+		httpOnly: true,
+	});
 	res.status(201).json({ ok: true });
 });
 
-// @desc    Confirm user email
-// @route   GET /api/user/register/confirm-email/:userId
-// @access  Public
-const confirmEmail = asyncHandler(async (req, res) => {
-	try {
-		const user = await User.findByIdAndUpdate(req.params.userId, { isConfirmed: true }, { new: true });
-		res.cookie('jid', createRefreshToken(user._id), {
-			httpOnly: true,
-		});
-		res.status(200).json({
-			user: { name: user.name, email: user.email, isConfirmed: user.isConfirmed, isStaff: user.isStaff },
-			accessToken: createAccessToken(user._id),
-		});
-	} catch (error) {
-		res.status(400);
-		throw new Error('Sorry something went wrong');
-	}
-});
 
 // @desc    login
 // @route   POST /api/user/login

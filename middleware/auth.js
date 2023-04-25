@@ -9,10 +9,6 @@ const auth = asyncHandler(async (req, res, next) => {
 			token = req.headers.authorization.split(' ')[1];
 			const decode = verify(token, process.env.JWT_ACCESS_SECRET);
 			const user = await User.findById(decode.userId).select('-password');
-			if (!user.isConfirmed) {
-				res.status(401);
-				throw new Error('Please confirm your email');
-			}
 			req.user = user;
 			next();
 		} catch (error) {

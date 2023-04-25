@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "nodemon backend/server.js",
-    "start": "node backend/server.js"
+    "server": "nodemon server.js",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "MIT",
@@ -14,6 +14,7 @@
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
+    "dotenv": "^16.0.3",
     "express": "^4.18.0",
     "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^8.5.1",

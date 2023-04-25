@@ -23,10 +23,6 @@ const UserModel = mongoose.Schema(
 				'Password must contain atleast 1 number, 1 upper case and 1 lower case',
 			],
 		},
-		isConfirmed: {
-			type: Boolean,
-			default: false,
-		},
 		isStaff: {
 			type: Boolean,
 			default: false,
