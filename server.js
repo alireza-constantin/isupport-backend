@@ -14,7 +14,10 @@ const app = express();
 app.use(
 	cors({
 		credentials: true,
-		origin: 'http://localhost:3000',
+		origin: ['http://localhost:3000', 
+		'https://isupport-frontend-git-main-alireza-constantin.vercel.app/',
+		'https://vercel.com/alireza-constantin/isupport-frontend/AYXpYYtzfnXc6XBWLu2m1VgSLT5w',
+		'https://isupport-frontend.vercel.app/'],
 	})
 );
 // express body parser
