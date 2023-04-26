@@ -11,9 +11,6 @@ const createUser = asyncHandler(async (req, res) => {
 	const { name, email, password } = req.body;
 
 	const user = await User.create({ name, email, password });
-	res.cookie('jid', createRefreshToken(user._id), {
-		httpOnly: true,
-	});
 	res.status(201).json({ ok: true });
 });
 
@@ -33,11 +30,6 @@ const login = asyncHandler(async (req, res) => {
 	if (!user) {
 		res.status(401);
 		throw new Error('Invalid credentials');
-	}
-
-	if (!user.isConfirmed) {
-		res.status(401);
-		throw new Error('Please confrim your email');
 	}
 
 	const valid = await compare(password, user.password);
@@ -145,7 +137,6 @@ const resetPassword = asyncHandler(async (req, res) => {
 
 module.exports = {
 	createUser,
-	confirmEmail,
 	login,
 	getMe,
 	forgotPassword,
