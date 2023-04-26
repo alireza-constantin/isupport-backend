@@ -13,9 +13,7 @@ const app = express();
 
 app.use(
 	cors({
-		credentials: true,
-		origin: 'http://localhost:3000',
-	})
+		credentials: true})
 );
 // express body parser
 app.use(express.urlencoded({ extended: true }));
