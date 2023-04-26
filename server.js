@@ -23,6 +23,10 @@ app.use(express.json());
 app.use(cookieParser());
 
 
+app.get('/', async (req, res) => {
+	res.json({ msg: 'Hello from iSupport' })
+})
+
 // loggin the request in development environment
 // if (process.env.NODE_ENV === 'dev') {
 // 	app.use(moragn('dev'));
