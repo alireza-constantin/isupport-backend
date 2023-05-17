@@ -19,6 +19,8 @@ app.use(
 		'https://isupport-frontend-git-main-alireza-constantin.vercel.app/',
 		'https://vercel.com/alireza-constantin/isupport-frontend/AYXpYYtzfnXc6XBWLu2m1VgSLT5w',
 		'https://isupport-frontend.vercel.app/'],
+		methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+		allowedHeaders: ['Content-Type', 'Authorization', 'origin'],
 	})
 );
 // express body parser
