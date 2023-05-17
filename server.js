@@ -11,26 +11,7 @@ const { createAccessToken } = require('./utils/createToken');
 
 // init the express object
 const app = express();
-// app.options('*', cors({
-// 	credentials: true,
-// 	origin: ['http://localhost:3000',
-// 		'https://isupport-frontend-git-main-alireza-constantin.vercel.app',
-// 		'https://vercel.com/alireza-constantin/isupport-frontend/AYXpYYtzfnXc6XBWLu2m1VgSLT5w',
-// 		'https://isupport-frontend.vercel.app'],
-// 	methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-// 	allowedHeaders: ['Content-Type', 'Authorization', 'origin'],
-// }))
-// app.use(
-// 	cors({
-// 		credentials: true,
-// 		origin: ['http://localhost:3000', 
-// 		'https://isupport-frontend-git-main-alireza-constantin.vercel.app/',
-// 		'https://vercel.com/alireza-constantin/isupport-frontend/AYXpYYtzfnXc6XBWLu2m1VgSLT5w',
-// 		'https://isupport-frontend.vercel.app/'],
-// 		methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-// 		allowedHeaders: ['Content-Type', 'Authorization', 'origin'],
-// 	})
-// );
+
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
