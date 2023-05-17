@@ -1,6 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv').config();
-const cors = require('cors');
+// const cors = require('cors');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const connectToDB = require('./config/db');
@@ -11,26 +11,45 @@ const { createAccessToken } = require('./utils/createToken');
 
 // init the express object
 const app = express();
-app.options('*', cors({
-	credentials: true,
-	origin: ['http://localhost:3000',
-		'https://isupport-frontend-git-main-alireza-constantin.vercel.app',
-		'https://vercel.com/alireza-constantin/isupport-frontend/AYXpYYtzfnXc6XBWLu2m1VgSLT5w',
-		'https://isupport-frontend.vercel.app'],
-	methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-	allowedHeaders: ['Content-Type', 'Authorization', 'origin'],
-}))
-app.use(
-	cors({
-		credentials: true,
-		origin: ['http://localhost:3000', 
-		'https://isupport-frontend-git-main-alireza-constantin.vercel.app/',
-		'https://vercel.com/alireza-constantin/isupport-frontend/AYXpYYtzfnXc6XBWLu2m1VgSLT5w',
-		'https://isupport-frontend.vercel.app/'],
-		methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-		allowedHeaders: ['Content-Type', 'Authorization', 'origin'],
-	})
-);
+// app.options('*', cors({
+// 	credentials: true,
+// 	origin: ['http://localhost:3000',
+// 		'https://isupport-frontend-git-main-alireza-constantin.vercel.app',
+// 		'https://vercel.com/alireza-constantin/isupport-frontend/AYXpYYtzfnXc6XBWLu2m1VgSLT5w',
+// 		'https://isupport-frontend.vercel.app'],
+// 	methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+// 	allowedHeaders: ['Content-Type', 'Authorization', 'origin'],
+// }))
+// app.use(
+// 	cors({
+// 		credentials: true,
+// 		origin: ['http://localhost:3000', 
+// 		'https://isupport-frontend-git-main-alireza-constantin.vercel.app/',
+// 		'https://vercel.com/alireza-constantin/isupport-frontend/AYXpYYtzfnXc6XBWLu2m1VgSLT5w',
+// 		'https://isupport-frontend.vercel.app/'],
+// 		methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+// 		allowedHeaders: ['Content-Type', 'Authorization', 'origin'],
+// 	})
+// );
+app.use(function (req, res, next) {
+
+    // Website you wish to allow to connect
+    res.setHeader('Access-Control-Allow-Origin', 'https://isupport-frontend.vercel.app');
+
+    // Request methods you wish to allow
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
+    // Request headers you wish to allow
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+
+    // Set to true if you need the website to include cookies in the requests sent
+    // to the API (e.g. in case you use sessions)
+    res.setHeader('Access-Control-Allow-Credentials', true);
+
+    // Pass to next layer of middleware
+    next();
+});
+
 // express body parser
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
