@@ -11,7 +11,7 @@ const { createAccessToken } = require('./utils/createToken');
 
 // init the express object
 const app = express();
-
+app.options('*', cors())
 app.use(
 	cors({
 		credentials: true,
