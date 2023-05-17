@@ -30,10 +30,9 @@ app.get('/', async (req, res) => {
 	res.json({ msg: 'Hello from iSupport' })
 })
 
-// loggin the request in development environment
-// if (process.env.NODE_ENV === 'dev') {
-// 	app.use(moragn('dev'));
-// }
+
+app.use(moragn('combined'));
+
 
 app.post('/api/user/refresh-token', async (req, res) => {
 	const token = req.cookies.jid;
