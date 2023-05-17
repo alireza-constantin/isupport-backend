@@ -26,13 +26,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 
+app.use(morgan('dev'));
 
 app.get('/', async (req, res) => {
 	res.json({ msg: 'Hello from iSupport' })
 })
-
-
-app.use(moragn('combined'));
 
 
 app.post('/api/user/refresh-token', async (req, res) => {
